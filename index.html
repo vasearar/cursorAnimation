@@ -56,24 +56,26 @@
  addDivs();
 
  window.addEventListener("resize", () => {
-  // removeAllDivs();
-  // addDivs();
+  removeAllDivs();
+  addDivs();
   location.reload();
  });
   let rectangle = document.querySelectorAll("div");
   let distanceFromLeft = rectangle[0].offsetLeft;
+  let distanceFromTop = rectangle[0].offsetTop;
   window.addEventListener("mousemove", (e) => {
     x = e.clientX;
     y = e.clientY;
     let aux1 = 25 + distanceFromLeft;
-    let aux2 = 20;
+    let aux2 = distanceFromTop;
     rectangle.forEach(element => {
       let angle = Math.atan2(y - aux2, x - aux1) + Math.PI / 2;
       element.style.transform = `rotate(${angle}rad)`;
       aux1 += 51;
       if (aux1 > Math.floor(getWindow().width)){
         aux1 = 25 + distanceFromLeft;
-        aux2 += 53;
+        aux2 += (50 + distanceFromTop - 18);
+        console.log(distanceFromTop+2)
       }
     });
   })
